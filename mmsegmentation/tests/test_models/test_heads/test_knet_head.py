@@ -22,7 +22,7 @@ kernel_updator_cfg = dict(
 def test_knet_head():
     # test init function of kernel update head
     kernel_update_head = KernelUpdateHead(
-        num_classes=3,
+        num_classes=4,
         num_ffn_fcs=2,
         num_heads=8,
         num_mask_fcs=1,
@@ -43,7 +43,7 @@ def test_knet_head():
         kernel_update_head=[
             dict(
                 type='KernelUpdateHead',
-                num_classes=3,
+                num_classes=4,
                 num_ffn_fcs=2,
                 num_heads=8,
                 num_mask_fcs=1,
@@ -68,7 +68,7 @@ def test_knet_head():
             num_convs=2,
             concat_input=True,
             dropout_ratio=0.1,
-            num_classes=3,
+            num_classes=4,
             align_corners=False))
     head.init_weights()
     inputs = [
@@ -96,7 +96,7 @@ def test_knet_head():
         kernel_update_head=[
             dict(
                 type='KernelUpdateHead',
-                num_classes=3,
+                num_classes=4,
                 num_ffn_fcs=2,
                 num_heads=8,
                 num_mask_fcs=1,
@@ -119,7 +119,7 @@ def test_knet_head():
             num_convs=2,
             concat_input=True,
             dropout_ratio=0.1,
-            num_classes=3,
+            num_classes=4,
             align_corners=False))
     head.init_weights()
 
@@ -142,7 +142,7 @@ def test_knet_head():
         kernel_update_head=[
             dict(
                 type='KernelUpdateHead',
-                num_classes=3,
+                num_classes=4,
                 num_ffn_fcs=2,
                 num_heads=8,
                 num_mask_fcs=1,
@@ -169,7 +169,7 @@ def test_knet_head():
             num_convs=2,
             concat_input=True,
             dropout_ratio=0.1,
-            num_classes=3,
+            num_classes=4,
             align_corners=False))
     head.init_weights()
 

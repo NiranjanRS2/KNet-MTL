@@ -10,7 +10,7 @@ def test_setr_up_head(capsys):
 
     with pytest.raises(AssertionError):
         # kernel_size must be [1/3]
-        SETRUPHead(num_classes=3, kernel_size=2)
+        SETRUPHead(num_classes=4, kernel_size=2)
 
     with pytest.raises(AssertionError):
         # in_channels must be int type and in_channels must be same
@@ -22,7 +22,7 @@ def test_setr_up_head(capsys):
         in_channels=4,
         channels=2,
         norm_cfg=dict(type='SyncBN'),
-        num_classes=3,
+        num_classes=4,
         init_cfg=dict(type='Kaiming'))
     super(SETRUPHead, head).init_weights()
 
@@ -33,7 +33,7 @@ def test_setr_up_head(capsys):
     head = SETRUPHead(
         in_channels=4,
         channels=2,
-        num_classes=3,
+        num_classes=4,
         num_convs=1,
         up_scale=4,
         kernel_size=1,

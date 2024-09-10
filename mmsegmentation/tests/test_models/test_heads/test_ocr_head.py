@@ -9,7 +9,7 @@ def test_ocr_head():
 
     inputs = [torch.randn(1, 8, 23, 23)]
     ocr_head = OCRHead(
-        in_channels=8, channels=4, num_classes=3, ocr_channels=8)
+        in_channels=8, channels=4, num_classes=4, ocr_channels=8)
     fcn_head = FCNHead(in_channels=8, channels=4, num_classes=19)
     if torch.cuda.is_available():
         head, inputs = to_cuda(ocr_head, inputs)

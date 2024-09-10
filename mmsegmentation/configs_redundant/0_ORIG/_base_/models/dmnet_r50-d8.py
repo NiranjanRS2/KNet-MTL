@@ -21,7 +21,7 @@ model = dict(
         channels=512,
         filter_sizes=(1, 3, 5, 7),
         dropout_ratio=0.1,
-        num_classes=3,
+        num_classes=4,
         norm_cfg=dict(type='SyncBN', requires_grad=True),
         align_corners=False,
         loss_decode=dict(
@@ -34,7 +34,7 @@ model = dict(
         num_convs=1,
         concat_input=False,
         dropout_ratio=0.1,
-        num_classes=3,
+        num_classes=4,
         norm_cfg=norm_cfg,
         align_corners=False,
         loss_decode=dict(

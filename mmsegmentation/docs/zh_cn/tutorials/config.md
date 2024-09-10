@@ -63,7 +63,7 @@ model = dict(
         channels=512,  # 解码头中间态(intermediate)的通道数。
         pool_scales=(1, 2, 3, 6),  # PSPHead 平均池化(avg pooling)的规模(scales)。 细节请参考文章内容。
         dropout_ratio=0.1,  # 进入最后分类层(classification layer)之前的 dropout 比例。
-        num_classes=3,  # 分割前景的种类数目。 通常情况下，cityscapes 为19，VOC为21，ADE20k 为150。
+        num_classes=4,  # 分割前景的种类数目。 通常情况下，cityscapes 为19，VOC为21，ADE20k 为150。
         norm_cfg=dict(type='SyncBN', requires_grad=True),  # 归一化层的配置项。
         align_corners=False,  # 解码里调整大小(resize)的 align_corners 参数。
         loss_decode=dict(  # 解码头(decode_head)里的损失函数的配置项。
@@ -78,7 +78,7 @@ model = dict(
         num_convs=1,  # FCNHead 里卷积(convs)的数目. 辅助头里通常为1。
         concat_input=False,  # 在分类层(classification layer)之前是否连接(concat)输入和卷积的输出。
         dropout_ratio=0.1,  # 进入最后分类层(classification layer)之前的 dropout 比例。
-        num_classes=3,  # 分割前景的种类数目。 通常情况下，cityscapes 为19，VOC为21，ADE20k 为150。
+        num_classes=4,  # 分割前景的种类数目。 通常情况下，cityscapes 为19，VOC为21，ADE20k 为150。
         norm_cfg=dict(type='SyncBN', requires_grad=True),  # 归一化层的配置项。
         align_corners=False,  # 解码里调整大小(resize)的 align_corners 参数。
         loss_decode=dict(  # 辅助头(auxiliary head)里的损失函数的配置项。

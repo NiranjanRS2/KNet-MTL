@@ -4,7 +4,7 @@ _base_ = [
 ]
 # norm_cfg = dict(type='SyncBN', requires_grad=True)
 norm_cfg = dict(type='BN', requires_grad=True)
-N_CLASSES=3
+N_CLASSES=4
 
 model = dict(
     pretrained=None,

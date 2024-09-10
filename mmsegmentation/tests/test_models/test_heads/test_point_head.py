@@ -28,7 +28,7 @@ def test_point_head():
         in_channels=[32],
         in_index=[0],
         channels=16,
-        num_classes=3,
+        num_classes=4,
         loss_decode=[
             dict(type='CrossEntropyLoss', loss_name='loss_1'),
             dict(type='CrossEntropyLoss', loss_name='loss_2')
@@ -37,7 +37,7 @@ def test_point_head():
     fcn_head_multiple_losses = FCNHead(
         in_channels=32,
         channels=16,
-        num_classes=3,
+        num_classes=4,
         loss_decode=[
             dict(type='CrossEntropyLoss', loss_name='loss_1'),
             dict(type='CrossEntropyLoss', loss_name='loss_2')

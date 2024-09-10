@@ -10,7 +10,7 @@ def test_aspp_head():
 
     with pytest.raises(AssertionError):
         # pool_scales must be list|tuple
-        ASPPHead(in_channels=8, channels=4, num_classes=3, dilations=1)
+        ASPPHead(in_channels=8, channels=4, num_classes=4, dilations=1)
 
     # test no norm_cfg
     head = ASPPHead(in_channels=8, channels=4, num_classes=19)
@@ -20,13 +20,13 @@ def test_aspp_head():
     head = ASPPHead(
         in_channels=8,
         channels=4,
-        num_classes=3,
+        num_classes=4,
         norm_cfg=dict(type='SyncBN'))
     assert _conv_has_norm(head, sync_bn=True)
 
     inputs = [torch.randn(1, 8, 45, 45)]
     head = ASPPHead(
-        in_channels=8, channels=4, num_classes=3, dilations=(1, 12, 24))
+        in_channels=8, channels=4, num_classes=4, dilations=(1, 12, 24))
     if torch.cuda.is_available():
         head, inputs = to_cuda(head, inputs)
     assert head.aspp_modules[0].conv.dilation == (1, 1)
@@ -45,7 +45,7 @@ def test_dw_aspp_head():
         c1_channels=0,
         in_channels=8,
         channels=4,
-        num_classes=3,
+        num_classes=4,
         dilations=(1, 12, 24))
     if torch.cuda.is_available():
         head, inputs = to_cuda(head, inputs)
@@ -63,7 +63,7 @@ def test_dw_aspp_head():
         c1_channels=2,
         in_channels=16,
         channels=8,
-        num_classes=3,
+        num_classes=4,
         dilations=(1, 12, 24))
     if torch.cuda.is_available():
         head, inputs = to_cuda(head, inputs)

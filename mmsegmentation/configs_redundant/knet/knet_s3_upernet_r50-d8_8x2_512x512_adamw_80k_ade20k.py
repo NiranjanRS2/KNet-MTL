@@ -3,7 +3,7 @@ _base_ = [
     '../_base_/schedules/schedule_80k.py'
 ]
 
-N_CLASSES=3
+N_CLASSES=4
 
 # model settings
 norm_cfg = dict(type='BN', requires_grad=True)

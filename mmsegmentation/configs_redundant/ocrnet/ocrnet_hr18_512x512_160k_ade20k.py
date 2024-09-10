@@ -6,7 +6,7 @@ _base_ = [
 norm_cfg = dict(type='BN', requires_grad=True)
 
 
-N_CLASSES=3
+N_CLASSES=4
 
 model = dict(decode_head=[
     dict(

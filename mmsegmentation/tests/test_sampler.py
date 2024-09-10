@@ -14,7 +14,7 @@ def _context_for_ohem_multiple_loss():
     return FCNHead(
         in_channels=32,
         channels=16,
-        num_classes=3,
+        num_classes=4,
         loss_decode=[
             dict(type='CrossEntropyLoss', loss_name='loss_1'),
             dict(type='CrossEntropyLoss', loss_name='loss_2')
