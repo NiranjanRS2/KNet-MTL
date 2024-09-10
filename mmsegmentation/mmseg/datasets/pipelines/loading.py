@@ -77,11 +77,14 @@ class LoadImageFromFile(object):
             mean=np.zeros(num_channels, dtype=np.float32),
             std=np.ones(num_channels, dtype=np.float32),
             to_rgb=False)
-        try:
-            with open('/media/inspektlabs/bot/Dent/log33/dist.txt', 'a') as file:
-                file.write(f"{results['img_info']['ann']['seg_map']}\n")
-        except:
-            pass
+
+        # print("%%%%%%%%%$$$$$$$$$$$$$$##########")
+        # ''' Considering zero-th index channel is BBOX label and first index channel is Segmentation label'''
+        # dim = gt_semantic_seg.ndim
+        # if dim==3:
+        #     # choice = np.random.choice([0,1],p=[0.5, 0.5])
+        #     # gt_semantic_seg = gt_semantic_seg[:,:,choice]
+        # print("%%%%%%%%%$$$$$$$$$$$$$$##########")
 
         return results
 
