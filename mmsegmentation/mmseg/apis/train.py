@@ -79,7 +79,6 @@ def train_segmentor(model,
     logger = get_root_logger(cfg.log_level)
 
     # prepare data loaders
-    print(dataset)
     dataset = dataset if isinstance(dataset, (list, tuple)) else [dataset]
     # The default loader config
     loader_cfg = dict(
@@ -100,8 +99,6 @@ def train_segmentor(model,
     # The specific dataloader settings
     train_loader_cfg = {**loader_cfg, **cfg.data.get('train_dataloader', {})}
     data_loaders = [build_dataloader(ds, **train_loader_cfg) for ds in dataset]
-    print(data_loaders[0])
-    print(dataset)
     # put model on devices
     if distributed:
         find_unused_parameters = cfg.get('find_unused_parameters', False)

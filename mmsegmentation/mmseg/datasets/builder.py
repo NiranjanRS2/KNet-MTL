@@ -69,27 +69,20 @@ def build_dataset(cfg, default_args=None):
     from .dataset_wrappers import (ConcatDataset, MultiImageMixDataset,
                                    RepeatDataset)
     if isinstance(cfg, (list, tuple)):
-        print("@@@@@@@@@@@@@@111111111111111111")
         dataset = ConcatDataset([build_dataset(c, default_args) for c in cfg])
     elif cfg['type'] == 'RepeatDataset':
-        print("@@@@@@@@@@@@@@2222222222222222222")
         dataset = RepeatDataset(
             build_dataset(cfg['dataset'], default_args), cfg['times'])
     elif cfg['type'] == 'MultiImageMixDataset':
-        print("@@@@@@@@@@@@@@333333333333333333")
         cp_cfg = copy.deepcopy(cfg)
         cp_cfg['dataset'] = build_dataset(cp_cfg['dataset'])
         cp_cfg.pop('type')
         dataset = MultiImageMixDataset(**cp_cfg)
     elif isinstance(cfg.get('img_dir'), (list, tuple)) or isinstance(
             cfg.get('split', None), (list, tuple)):
-        print("@@@@@@@@@@@@@@44444444444444444444")
         dataset = _concat_dataset(cfg, default_args)
     else:
-        print("@@@@@@@@@@@@@@5555555555555555555")
-        print(DATASETS)
         dataset = build_from_cfg(cfg, DATASETS, default_args)
-        # print(dataset)
 
     return dataset
 

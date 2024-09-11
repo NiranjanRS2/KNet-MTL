@@ -23,10 +23,10 @@ crop_size = (320,320) ##
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', reduce_zero_label=True),
-    dict(type='Resize', img_scale=(320,320), ratio_range=(0.5, 2.0)),
+    # dict(type='Resize', img_scale=(320,320), ratio_range=(0.5, 2.0)),
     # dict(type='Resize', img_scale=(1080,1080), keep_ratio=True),
-    dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.75),
-    dict(type='RandomFlip', prob=0.5),
+    # dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.75),
+    # dict(type='RandomFlip', prob=0.5),
     dict(type='PhotoMetricDistortion'),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='Pad', size=crop_size, pad_val=0, seg_pad_val=255),

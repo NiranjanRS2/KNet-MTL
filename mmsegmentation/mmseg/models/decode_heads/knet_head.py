@@ -435,10 +435,7 @@ class IterativeDecodeHead(BaseDecodeHead):
 
     def forward(self, inputs):
         """Forward function."""
-        # print(inputs[0].shape, len(inputs))
         feats = self.kernel_generate_head._forward_feature(inputs)
-        # print(feats.shape)
-        # print(feats.register_hook(self.activations_hook))
         sem_seg = self.kernel_generate_head.cls_seg(feats)
         seg_kernels = self.kernel_generate_head.conv_seg.weight.clone()
         seg_kernels = seg_kernels[None].expand(
@@ -461,5 +458,4 @@ class IterativeDecodeHead(BaseDecodeHead):
             loss = self.kernel_generate_head.losses(logit, seg_label)
             for k, v in loss.items():
                 losses[f'{k}.s{i}'] = v
-
         return losses

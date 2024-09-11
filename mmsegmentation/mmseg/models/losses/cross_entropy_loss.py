@@ -41,60 +41,55 @@ def cross_entropy(pred,
     """
     # class_weight is a manual rescaling weight given to each class.
     # If given, has to be a Tensor of size C element-wise losses
-    ''' LOSS Calculation for MTL '''
-    print("#######################")
-    batch_size = label.shape[0]
-    loss = torch.tensor(0, dtype=torch.float32).to('cuda')
-    for batch_index in range(batch_size):
-        true_label = label.clone()
-        true_label = true_label[batch_index, :, :].unsqueeze(0)
-        flag1 = True if (0 in true_label) or (1 in true_label) else False ## flag1 is for bbox label
-        flag2 = True if (2 in true_label) or (3 in true_label) else False ## flag2 is for seg label
-        print(torch.unique(true_label, return_counts=True))
-        print(flag1, flag2)
-        if flag2:
-            true_label = torch.where(true_label == 2, 0, true_label)
-            true_label = torch.where(true_label == 3, 1, true_label)
+    # ''' LOSS Calculation for MTL '''
+    # batch_size = label.shape[0]
+    # loss = torch.tensor(0, dtype=torch.float32).to('cuda')
+    # for batch_index in range(batch_size):
+    #     true_label = label.clone()
+    #     true_label = true_label[batch_index, :, :].unsqueeze(0)
+    #     flag1 = True if (0 in true_label) or (1 in true_label) else False ## flag1 is for bbox label
+    #     flag2 = True if (2 in true_label) or (3 in true_label) else False ## flag2 is for seg label
+    #     if flag2:
+    #         true_label = torch.where(true_label == 2, 0, true_label)
+    #         true_label = torch.where(true_label == 3, 1, true_label)
 
-        if flag1:
-            pred_label = pred[batch_index,:2,:,:].unsqueeze(0)
-            loss_ = F.cross_entropy(
-                    pred_label,
-                    true_label,
-                    weight=class_weight,
-                    reduction='mean',
-                    ignore_index=ignore_index)  
-        else:
-            pred_label = pred[batch_index,2:,:,:].unsqueeze(0)
-            loss_ = F.cross_entropy(
-                    pred_label,
-                    true_label,
-                    weight=class_weight,
-                    reduction='mean',
-                    ignore_index=ignore_index)  
+    #     if flag1:
+    #         pred_label = pred[batch_index,:2,:,:].unsqueeze(0)
+    #         loss_ = F.cross_entropy(
+    #                 pred_label,
+    #                 true_label,
+    #                 weight=class_weight,
+    #                 reduction='mean',
+    #                 ignore_index=ignore_index)  
+    #     else:
+    #         pred_label = pred[batch_index,2:,:,:].unsqueeze(0)
+    #         loss_ = F.cross_entropy(
+    #                 pred_label,
+    #                 true_label,
+    #                 weight=class_weight,
+    #                 reduction='mean',
+    #                 ignore_index=ignore_index)  
 
-        loss += loss_
-
-        loss_ = int(loss_)
-
-        if flag1:
-            print("BBOX")
-            with open('/media/inspektlabs/bot/Dent/log39/bbox_loss.txt', 'a') as file:
-                file.write(f"{loss_}\n")
-        if flag2:
-            print("SEGG")
-            with open('/media/inspektlabs/bot/Dent/log39/segg_loss.txt', 'a') as file:
-                file.write(f"{loss_}\n")           
-
+    #     loss += loss_
+    #     # print(flag1, flag2)
+    #     if flag1:
+    #         # print("BBOX")
+    #         with open('/media/inspektlabs/bot/Dent/log39/bbox_loss.txt', 'a') as file:
+    #             file.write(f"{loss_}\n")
+    #     if flag2:
+    #         # print("SEGG")
+    #         with open('/media/inspektlabs/bot/Dent/log39/segg_loss.txt', 'a') as file:
+    #             file.write(f"{loss_}\n") 
+    #     break  
     ''' LOSS Calculation for MTL '''
 
-    # loss = F.cross_entropy(
-    #     pred,
-    #     label,
-    #     weight=class_weight,
-    #     reduction='mean',
-    #     ignore_index=ignore_index)
-
+    loss = F.cross_entropy(
+        pred,
+        label,
+        weight=class_weight,
+        reduction='mean',
+        ignore_index=ignore_index)
+ 
     # apply weights and do the reduction
     # average loss over non-ignored elements
     # pytorch's official cross_entropy average loss over non-ignored elements

@@ -79,7 +79,6 @@ class WindowMSA(BaseModule):
         trunc_normal_(self.relative_position_bias_table, std=0.02)
 
     def forward(self, x, mask=None):
-        # print("xxxxxxxxxxxxxxxxxxxxxx")
         """
         Args:
 
