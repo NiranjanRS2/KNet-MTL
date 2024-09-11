@@ -50,7 +50,8 @@ def cross_entropy(pred,
         true_label = true_label[batch_index, :, :].unsqueeze(0)
         flag1 = True if (0 in true_label) or (1 in true_label) else False ## flag1 is for bbox label
         flag2 = True if (2 in true_label) or (3 in true_label) else False ## flag2 is for seg label
-    
+        print(torch.unique(true_label, return_counts=True))
+        print(flag1, flag2)
         if flag2:
             true_label = torch.where(true_label == 2, 0, true_label)
             true_label = torch.where(true_label == 3, 1, true_label)

@@ -78,14 +78,6 @@ class LoadImageFromFile(object):
             std=np.ones(num_channels, dtype=np.float32),
             to_rgb=False)
 
-        # print("%%%%%%%%%$$$$$$$$$$$$$$##########")
-        # ''' Considering zero-th index channel is BBOX label and first index channel is Segmentation label'''
-        # dim = gt_semantic_seg.ndim
-        # if dim==3:
-        #     # choice = np.random.choice([0,1],p=[0.5, 0.5])
-        #     # gt_semantic_seg = gt_semantic_seg[:,:,choice]
-        # print("%%%%%%%%%$$$$$$$$$$$$$$##########")
-
         return results
 
     def __repr__(self):
@@ -156,6 +148,23 @@ class LoadAnnotations(object):
             gt_semantic_seg[gt_semantic_seg == 0] = 255
             gt_semantic_seg = gt_semantic_seg - 1
             gt_semantic_seg[gt_semantic_seg == 254] = 255
+
+        # print("%%%%%%%%%$$$$$$$$$$$$$$##########")
+        ''' Considering zero-th index channel is BBOX label and first index channel is Segmentation label'''
+        # ## if both channels have labels (bbox and seg) ## 
+        # dim = gt_semantic_seg.ndim
+        # if dim==3:
+        #     choice = np.random.choice([0,1],p=[0.5, 0.5])
+        #     gt_semantic_seg = gt_semantic_seg[:,:,choice]
+        
+        ## if only channel have label (either bbox or seg) ## 
+        dim = gt_semantic_seg.ndim
+        if dim==3:
+            if 0 in gt_semantic_seg or 1 in gt_semantic_seg:
+                gt_semantic_seg = gt_semantic_seg[:,:,0]
+            elif 2 in gt_semantic_seg or 3 in gt_semantic_seg:
+                gt_semantic_seg = gt_semantic_seg[:,:,1]
+        # print("%%%%%%%%%$$$$$$$$$$$$$$##########")
         
         results['gt_semantic_seg'] = gt_semantic_seg
         results['seg_fields'].append('gt_semantic_seg')
