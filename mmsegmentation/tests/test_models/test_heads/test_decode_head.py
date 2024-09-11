@@ -17,29 +17,29 @@ def test_decode_head():
 
     with pytest.raises(AssertionError):
         # default input_transform doesn't accept multiple inputs
-        BaseDecodeHead(32, 16, num_classes=4, in_index=[-1, -2])
+        BaseDecodeHead(32, 16, num_classes=2, in_index=[-1, -2])
 
     with pytest.raises(AssertionError):
         # supported mode is resize_concat only
-        BaseDecodeHead(32, 16, num_classes=4, input_transform='concat')
+        BaseDecodeHead(32, 16, num_classes=2, input_transform='concat')
 
     with pytest.raises(AssertionError):
         # in_channels should be list|tuple
-        BaseDecodeHead(32, 16, num_classes=4, input_transform='resize_concat')
+        BaseDecodeHead(32, 16, num_classes=2, input_transform='resize_concat')
 
     with pytest.raises(AssertionError):
         # in_index should be list|tuple
         BaseDecodeHead([32],
                        16,
                        in_index=-1,
-                       num_classes=4,
+                       num_classes=2,
                        input_transform='resize_concat')
 
     with pytest.raises(AssertionError):
         # len(in_index) should equal len(in_channels)
         BaseDecodeHead([32, 16],
                        16,
-                       num_classes=4,
+                       num_classes=2,
                        in_index=[-1],
                        input_transform='resize_concat')
 
@@ -48,7 +48,7 @@ def test_decode_head():
     assert hasattr(head, 'dropout') and head.dropout.p == 0.1
 
     # test set dropout
-    head = BaseDecodeHead(32, 16, num_classes=4, dropout_ratio=0.2)
+    head = BaseDecodeHead(32, 16, num_classes=2, dropout_ratio=0.2)
     assert hasattr(head, 'dropout') and head.dropout.p == 0.2
 
     # test no input_transform
@@ -65,7 +65,7 @@ def test_decode_head():
     inputs = [torch.randn(1, 32, 45, 45), torch.randn(1, 16, 21, 21)]
     head = BaseDecodeHead([32, 16],
                           16,
-                          num_classes=4,
+                          num_classes=2,
                           in_index=[0, 1],
                           input_transform='resize_concat')
     if torch.cuda.is_available():
@@ -78,14 +78,14 @@ def test_decode_head():
     # test multi-loss, loss_decode is dict
     with pytest.raises(TypeError):
         # loss_decode must be a dict or sequence of dict.
-        BaseDecodeHead(3, 16, num_classes=4, loss_decode=['CrossEntropyLoss'])
+        BaseDecodeHead(3, 16, num_classes=2, loss_decode=['CrossEntropyLoss'])
 
     inputs = torch.randn(2, 19, 8, 8).float()
     target = torch.ones(2, 1, 64, 64).long()
     head = BaseDecodeHead(
         3,
         16,
-        num_classes=4,
+        num_classes=2,
         loss_decode=dict(
             type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0))
     if torch.cuda.is_available():
@@ -100,7 +100,7 @@ def test_decode_head():
     head = BaseDecodeHead(
         3,
         16,
-        num_classes=4,
+        num_classes=2,
         loss_decode=[
             dict(type='CrossEntropyLoss', loss_name='loss_1'),
             dict(type='CrossEntropyLoss', loss_name='loss_2')
@@ -114,9 +114,9 @@ def test_decode_head():
 
     # 'loss_decode' must be a dict or sequence of dict
     with pytest.raises(TypeError):
-        BaseDecodeHead(3, 16, num_classes=4, loss_decode=['CrossEntropyLoss'])
+        BaseDecodeHead(3, 16, num_classes=2, loss_decode=['CrossEntropyLoss'])
     with pytest.raises(TypeError):
-        BaseDecodeHead(3, 16, num_classes=4, loss_decode=0)
+        BaseDecodeHead(3, 16, num_classes=2, loss_decode=0)
 
     # test multi-loss, loss_decode is list of dict
     inputs = torch.randn(2, 19, 8, 8).float()
@@ -124,7 +124,7 @@ def test_decode_head():
     head = BaseDecodeHead(
         3,
         16,
-        num_classes=4,
+        num_classes=2,
         loss_decode=(dict(type='CrossEntropyLoss', loss_name='loss_1'),
                      dict(type='CrossEntropyLoss', loss_name='loss_2'),
                      dict(type='CrossEntropyLoss', loss_name='loss_3')))
@@ -142,7 +142,7 @@ def test_decode_head():
     head = BaseDecodeHead(
         3,
         16,
-        num_classes=4,
+        num_classes=2,
         loss_decode=(dict(type='CrossEntropyLoss', loss_name='loss_ce'),
                      dict(type='CrossEntropyLoss', loss_name='loss_ce'),
                      dict(type='CrossEntropyLoss', loss_name='loss_ce')))
@@ -154,7 +154,7 @@ def test_decode_head():
     head = BaseDecodeHead(
         3,
         16,
-        num_classes=4,
+        num_classes=2,
         loss_decode=(dict(type='CrossEntropyLoss', loss_name='loss_ce')))
     if torch.cuda.is_available():
         head, inputs = to_cuda(head, inputs)

@@ -28,7 +28,7 @@ model = dict(
             feature_strides=[4, 8, 16, 32],
             channels=128,
             dropout_ratio=-1,
-            num_classes=4,
+            num_classes=2,
             norm_cfg=norm_cfg,
             align_corners=False,
             loss_decode=dict(
@@ -41,7 +41,7 @@ model = dict(
             num_fcs=3,
             coarse_pred_each_layer=True,
             dropout_ratio=-1,
-            num_classes=4,
+            num_classes=2,
             align_corners=False,
             loss_decode=dict(
                 type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0))

@@ -10,7 +10,7 @@ def test_apc_head():
 
     with pytest.raises(AssertionError):
         # pool_scales must be list|tuple
-        APCHead(in_channels=8, channels=2, num_classes=4, pool_scales=1)
+        APCHead(in_channels=8, channels=2, num_classes=2, pool_scales=1)
 
     # test no norm_cfg
     head = APCHead(in_channels=8, channels=2, num_classes=19)
@@ -20,7 +20,7 @@ def test_apc_head():
     head = APCHead(
         in_channels=8,
         channels=2,
-        num_classes=4,
+        num_classes=2,
         norm_cfg=dict(type='SyncBN'))
     assert _conv_has_norm(head, sync_bn=True)
 
@@ -29,7 +29,7 @@ def test_apc_head():
     head = APCHead(
         in_channels=8,
         channels=2,
-        num_classes=4,
+        num_classes=2,
         pool_scales=(1, 2, 3),
         fusion=True)
     if torch.cuda.is_available():
@@ -46,7 +46,7 @@ def test_apc_head():
     head = APCHead(
         in_channels=8,
         channels=2,
-        num_classes=4,
+        num_classes=2,
         pool_scales=(1, 2, 3),
         fusion=False)
     if torch.cuda.is_available():

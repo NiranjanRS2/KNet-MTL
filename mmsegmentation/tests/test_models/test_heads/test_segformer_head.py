@@ -9,7 +9,7 @@ def test_segformer_head():
     with pytest.raises(AssertionError):
         # `in_channels` must have same length as `in_index`
         SegformerHead(
-            in_channels=(1, 2, 3), in_index=(0, 1), channels=5, num_classes=4)
+            in_channels=(1, 2, 3), in_index=(0, 1), channels=5, num_classes=2)
 
     H, W = (64, 64)
     in_channels = (32, 64, 160, 256)

@@ -194,7 +194,7 @@ class KernelUpdateHead(nn.Module):
     """
 
     def __init__(self,
-                 num_classes=4,
+                 num_classes=2,
                  num_ffn_fcs=2,
                  num_heads=8,
                  num_mask_fcs=3,

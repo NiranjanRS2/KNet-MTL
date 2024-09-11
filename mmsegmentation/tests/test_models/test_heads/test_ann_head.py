@@ -11,7 +11,7 @@ def test_ann_head():
     head = ANNHead(
         in_channels=[4, 8],
         channels=2,
-        num_classes=4,
+        num_classes=2,
         in_index=[-2, -1],
         project_channels=8)
     if torch.cuda.is_available():

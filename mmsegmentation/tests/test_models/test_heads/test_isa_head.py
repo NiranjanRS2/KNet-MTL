@@ -11,7 +11,7 @@ def test_isa_head():
     isa_head = ISAHead(
         in_channels=8,
         channels=4,
-        num_classes=4,
+        num_classes=2,
         isa_channels=4,
         down_factor=(8, 8))
     if torch.cuda.is_available():

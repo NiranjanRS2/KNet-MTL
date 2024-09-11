@@ -9,6 +9,6 @@ model = dict(
         num_convs=0,
         dropout_ratio=0.0,
         concat_input=False,
-        num_classes=4,
+        num_classes=2,
         loss_decode=dict(
             type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0)))

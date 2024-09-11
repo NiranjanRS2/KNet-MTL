@@ -23,7 +23,7 @@ model = dict(
             num_convs=0,
             kernel_size=1,
             concat_input=False,
-            num_classes=4,
+            num_classes=2,
             align_corners=False,
             loss_decode=dict(
                 type='CrossEntropyLoss', use_sigmoid=False, loss_weight=0.4)),
@@ -38,7 +38,7 @@ model = dict(
             num_convs=0,
             kernel_size=1,
             concat_input=False,
-            num_classes=4,
+            num_classes=2,
             align_corners=False,
             loss_decode=dict(
                 type='CrossEntropyLoss', use_sigmoid=False, loss_weight=0.4)),
@@ -53,7 +53,7 @@ model = dict(
             num_convs=0,
             kernel_size=1,
             concat_input=False,
-            num_classes=4,
+            num_classes=2,
             align_corners=False,
             loss_decode=dict(
                 type='CrossEntropyLoss', use_sigmoid=False, loss_weight=0.4)),
@@ -68,7 +68,7 @@ model = dict(
             num_convs=0,
             kernel_size=1,
             concat_input=False,
-            num_classes=4,
+            num_classes=2,
             align_corners=False,
             loss_decode=dict(
                 type='CrossEntropyLoss', use_sigmoid=False, loss_weight=0.4)),

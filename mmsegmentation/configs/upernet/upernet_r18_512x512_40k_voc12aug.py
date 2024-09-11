@@ -6,5 +6,5 @@ _base_ = [
 model = dict(
     pretrained='open-mmlab://resnet18_v1c',
     backbone=dict(depth=18),
-    decode_head=dict(in_channels=[64, 128, 256, 512], num_classes=41),
-    auxiliary_head=dict(in_channels=256, num_classes=41))
+    decode_head=dict(in_channels=[64, 128, 256, 512], num_classes=21),
+    auxiliary_head=dict(in_channels=256, num_classes=21))

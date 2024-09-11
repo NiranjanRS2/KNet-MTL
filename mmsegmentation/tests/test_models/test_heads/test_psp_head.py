@@ -10,7 +10,7 @@ def test_psp_head():
 
     with pytest.raises(AssertionError):
         # pool_scales must be list|tuple
-        PSPHead(in_channels=4, channels=2, num_classes=4, pool_scales=1)
+        PSPHead(in_channels=4, channels=2, num_classes=2, pool_scales=1)
 
     # test no norm_cfg
     head = PSPHead(in_channels=4, channels=2, num_classes=19)
@@ -20,13 +20,13 @@ def test_psp_head():
     head = PSPHead(
         in_channels=4,
         channels=2,
-        num_classes=4,
+        num_classes=2,
         norm_cfg=dict(type='SyncBN'))
     assert _conv_has_norm(head, sync_bn=True)
 
     inputs = [torch.randn(1, 4, 23, 23)]
     head = PSPHead(
-        in_channels=4, channels=2, num_classes=4, pool_scales=(1, 2, 3))
+        in_channels=4, channels=2, num_classes=2, pool_scales=(1, 2, 3))
     if torch.cuda.is_available():
         head, inputs = to_cuda(head, inputs)
     assert head.psp_modules[0][0].output_size == 1

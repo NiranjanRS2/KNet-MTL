@@ -67,7 +67,7 @@ model = dict(
         channels=512,  # The intermediate channels of decode head.
         pool_scales=(1, 2, 3, 6),  # The avg pooling scales of PSPHead. Please refer to paper for details.
         dropout_ratio=0.1,  # The dropout ratio before final classification layer.
-        num_classes=4,  # Number of segmentation class. Usually 19 for cityscapes, 21 for VOC, 150 for ADE20k.
+        num_classes=2,  # Number of segmentation class. Usually 19 for cityscapes, 21 for VOC, 150 for ADE20k.
         norm_cfg=dict(type='SyncBN', requires_grad=True),  # The configuration of norm layer.
         align_corners=False,  # The align_corners argument for resize in decoding.
         loss_decode=dict(  # Config of loss function for the decode_head.
@@ -82,7 +82,7 @@ model = dict(
         num_convs=1,  # Number of convs in FCNHead. It is usually 1 in auxiliary head.
         concat_input=False,  # Whether concat output of convs with input before classification layer.
         dropout_ratio=0.1,  # The dropout ratio before final classification layer.
-        num_classes=4,  # Number of segmentation class. Usually 19 for cityscapes, 21 for VOC, 150 for ADE20k.
+        num_classes=2,  # Number of segmentation class. Usually 19 for cityscapes, 21 for VOC, 150 for ADE20k.
         norm_cfg=dict(type='SyncBN', requires_grad=True),  # The configuration of norm layer.
         align_corners=False,  # The align_corners argument for resize in decoding.
         loss_decode=dict(  # Config of loss function for the decode_head.

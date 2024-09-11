@@ -12,7 +12,7 @@ def test_fcn_head():
 
     with pytest.raises(AssertionError):
         # num_convs must be not less than 0
-        FCNHead(num_classes=4, num_convs=-1)
+        FCNHead(num_classes=2, num_convs=-1)
 
     # test no norm_cfg
     head = FCNHead(in_channels=8, channels=4, num_classes=19)
@@ -24,7 +24,7 @@ def test_fcn_head():
     head = FCNHead(
         in_channels=8,
         channels=4,
-        num_classes=4,
+        num_classes=2,
         norm_cfg=dict(type='SyncBN'))
     for m in head.modules():
         if isinstance(m, ConvModule):
@@ -33,7 +33,7 @@ def test_fcn_head():
     # test concat_input=False
     inputs = [torch.randn(1, 8, 23, 23)]
     head = FCNHead(
-        in_channels=8, channels=4, num_classes=4, concat_input=False)
+        in_channels=8, channels=4, num_classes=2, concat_input=False)
     if torch.cuda.is_available():
         head, inputs = to_cuda(head, inputs)
     assert len(head.convs) == 2
@@ -44,7 +44,7 @@ def test_fcn_head():
     # test concat_input=True
     inputs = [torch.randn(1, 8, 23, 23)]
     head = FCNHead(
-        in_channels=8, channels=4, num_classes=4, concat_input=True)
+        in_channels=8, channels=4, num_classes=2, concat_input=True)
     if torch.cuda.is_available():
         head, inputs = to_cuda(head, inputs)
     assert len(head.convs) == 2
@@ -66,7 +66,7 @@ def test_fcn_head():
 
     # test kernel_size=1
     inputs = [torch.randn(1, 8, 23, 23)]
-    head = FCNHead(in_channels=8, channels=4, num_classes=4, kernel_size=1)
+    head = FCNHead(in_channels=8, channels=4, num_classes=2, kernel_size=1)
     if torch.cuda.is_available():
         head, inputs = to_cuda(head, inputs)
     for i in range(len(head.convs)):
@@ -77,7 +77,7 @@ def test_fcn_head():
 
     # test num_conv
     inputs = [torch.randn(1, 8, 23, 23)]
-    head = FCNHead(in_channels=8, channels=4, num_classes=4, num_convs=1)
+    head = FCNHead(in_channels=8, channels=4, num_classes=2, num_convs=1)
     if torch.cuda.is_available():
         head, inputs = to_cuda(head, inputs)
     assert len(head.convs) == 1
@@ -89,7 +89,7 @@ def test_fcn_head():
     head = FCNHead(
         in_channels=8,
         channels=8,
-        num_classes=4,
+        num_classes=2,
         num_convs=0,
         concat_input=False)
     if torch.cuda.is_available():
@@ -105,7 +105,7 @@ def test_sep_fcn_head():
         in_channels=128,
         channels=128,
         concat_input=False,
-        num_classes=4,
+        num_classes=2,
         in_index=-1,
         norm_cfg=dict(type='BN', requires_grad=True, momentum=0.01))
     x = [torch.rand(2, 128, 8, 8)]
@@ -120,7 +120,7 @@ def test_sep_fcn_head():
         in_channels=64,
         channels=64,
         concat_input=True,
-        num_classes=4,
+        num_classes=2,
         in_index=-1,
         norm_cfg=dict(type='BN', requires_grad=True, momentum=0.01))
     x = [torch.rand(3, 64, 8, 8)]

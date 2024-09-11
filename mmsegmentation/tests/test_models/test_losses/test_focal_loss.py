@@ -94,7 +94,7 @@ def test_wrong_pred_and_target_shape():
     focal_loss = build_loss(loss_cfg)
     fake_pred = torch.rand(3, 4, 5, 6)
     fake_target = torch.randint(0, 4, (3, 2, 2))
-    fake_target = F.one_hot(fake_target, num_classes=4)
+    fake_target = F.one_hot(fake_target, num_classes=2)
     fake_target = fake_target.permute(0, 3, 1, 2)
     with pytest.raises(AssertionError):
         focal_loss(fake_pred, fake_target)
@@ -109,7 +109,7 @@ def test_forward_with_different_shape_of_target():
     fake_target = torch.randint(0, 4, (3, 5, 6))
     loss1 = focal_loss(fake_pred, fake_target)
 
-    fake_target = F.one_hot(fake_target, num_classes=4)
+    fake_target = F.one_hot(fake_target, num_classes=2)
     fake_target = fake_target.permute(0, 3, 1, 2)
     loss2 = focal_loss(fake_pred, fake_target)
     assert loss1 == loss2
@@ -179,7 +179,7 @@ def test_ignore_index():
     fake_pred = torch.rand(3, 4, 5, 6)
     fake_target = torch.randint(0, 4, (3, 5, 6))
     loss1 = focal_loss(fake_pred, fake_target, ignore_index=2)
-    one_hot_target = F.one_hot(fake_target, num_classes=4)
+    one_hot_target = F.one_hot(fake_target, num_classes=2)
     one_hot_target = one_hot_target.permute(0, 3, 1, 2)
     loss2 = focal_loss(fake_pred, one_hot_target, ignore_index=2)
     ignore_mask = one_hot_target == 2

@@ -19,7 +19,7 @@ def test_dnl_head():
 
     # NonLocal2d with 'dot_product' mode
     head = DNLHead(
-        in_channels=8, channels=4, num_classes=4, mode='dot_product')
+        in_channels=8, channels=4, num_classes=2, mode='dot_product')
     inputs = [torch.randn(1, 8, 23, 23)]
     if torch.cuda.is_available():
         head, inputs = to_cuda(head, inputs)
@@ -27,7 +27,7 @@ def test_dnl_head():
     assert outputs.shape == (1, head.num_classes, 23, 23)
 
     # NonLocal2d with 'gaussian' mode
-    head = DNLHead(in_channels=8, channels=4, num_classes=4, mode='gaussian')
+    head = DNLHead(in_channels=8, channels=4, num_classes=2, mode='gaussian')
     inputs = [torch.randn(1, 8, 23, 23)]
     if torch.cuda.is_available():
         head, inputs = to_cuda(head, inputs)
@@ -36,7 +36,7 @@ def test_dnl_head():
 
     # NonLocal2d with 'concatenation' mode
     head = DNLHead(
-        in_channels=8, channels=4, num_classes=4, mode='concatenation')
+        in_channels=8, channels=4, num_classes=2, mode='concatenation')
     inputs = [torch.randn(1, 8, 23, 23)]
     if torch.cuda.is_available():
         head, inputs = to_cuda(head, inputs)

@@ -10,12 +10,12 @@ def test_setr_mla_head(capsys):
 
     with pytest.raises(AssertionError):
         # MLA requires input multiple stage feature information.
-        SETRMLAHead(in_channels=8, channels=4, num_classes=4, in_index=1)
+        SETRMLAHead(in_channels=8, channels=4, num_classes=2, in_index=1)
 
     with pytest.raises(AssertionError):
         # multiple in_indexs requires multiple in_channels.
         SETRMLAHead(
-            in_channels=8, channels=4, num_classes=4, in_index=(0, 1, 2, 3))
+            in_channels=8, channels=4, num_classes=2, in_index=(0, 1, 2, 3))
 
     with pytest.raises(AssertionError):
         # channels should be len(in_channels) * mla_channels
@@ -34,7 +34,7 @@ def test_setr_mla_head(capsys):
         channels=16,
         mla_channels=4,
         in_index=(0, 1, 2, 3),
-        num_classes=4,
+        num_classes=2,
         norm_cfg=dict(type='BN'))
 
     h, w = img_size[0] // patch_size, img_size[1] // patch_size

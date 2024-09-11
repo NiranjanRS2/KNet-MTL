@@ -10,7 +10,7 @@ def test_dm_head():
 
     with pytest.raises(AssertionError):
         # filter_sizes must be list|tuple
-        DMHead(in_channels=8, channels=4, num_classes=4, filter_sizes=1)
+        DMHead(in_channels=8, channels=4, num_classes=2, filter_sizes=1)
 
     # test no norm_cfg
     head = DMHead(in_channels=8, channels=4, num_classes=19)
@@ -20,7 +20,7 @@ def test_dm_head():
     head = DMHead(
         in_channels=8,
         channels=4,
-        num_classes=4,
+        num_classes=2,
         norm_cfg=dict(type='SyncBN'))
     assert _conv_has_norm(head, sync_bn=True)
 
@@ -29,7 +29,7 @@ def test_dm_head():
     head = DMHead(
         in_channels=8,
         channels=4,
-        num_classes=4,
+        num_classes=2,
         filter_sizes=(1, 3, 5),
         fusion=True)
     if torch.cuda.is_available():
@@ -46,7 +46,7 @@ def test_dm_head():
     head = DMHead(
         in_channels=8,
         channels=4,
-        num_classes=4,
+        num_classes=2,
         filter_sizes=(1, 3, 5),
         fusion=False)
     if torch.cuda.is_available():

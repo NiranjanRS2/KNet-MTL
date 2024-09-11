@@ -15,7 +15,7 @@ model = dict(decode_head=[
         num_convs=1,
         concat_input=False,
         dropout_ratio=-1,
-        num_classes=41,
+        num_classes=21,
         norm_cfg=norm_cfg,
         align_corners=False,
         loss_decode=dict(
@@ -28,7 +28,7 @@ model = dict(decode_head=[
         channels=512,
         ocr_channels=256,
         dropout_ratio=-1,
-        num_classes=41,
+        num_classes=21,
         norm_cfg=norm_cfg,
         align_corners=False,
         loss_decode=dict(

@@ -12,13 +12,13 @@ def test_dpt_head():
         head = DPTHead(
             in_channels=[768, 768, 768, 768],
             channels=4,
-            num_classes=4,
+            num_classes=2,
             in_index=[0, 1, 2, 3])
 
     head = DPTHead(
         in_channels=[768, 768, 768, 768],
         channels=4,
-        num_classes=4,
+        num_classes=2,
         in_index=[0, 1, 2, 3],
         input_transform='multiple_select')
 
@@ -31,7 +31,7 @@ def test_dpt_head():
     head = DPTHead(
         in_channels=[768, 768, 768, 768],
         channels=4,
-        num_classes=4,
+        num_classes=2,
         in_index=[0, 1, 2, 3],
         input_transform='multiple_select',
         readout_type='add')
@@ -41,7 +41,7 @@ def test_dpt_head():
     head = DPTHead(
         in_channels=[768, 768, 768, 768],
         channels=4,
-        num_classes=4,
+        num_classes=2,
         in_index=[0, 1, 2, 3],
         input_transform='multiple_select',
         readout_type='project')

@@ -9,7 +9,7 @@ def test_segmenter_mask_transformer_head():
     head = SegmenterMaskTransformerHead(
         in_channels=2,
         channels=2,
-        num_classes=4,
+        num_classes=2,
         num_layers=2,
         num_heads=3,
         embed_dims=192,
